@@ -1,16 +1,3 @@
-#!/usr/bin/env python3
-"""Interactive visualizer for the Master's Theorem.
-
-Run interactively:
-    python master_theorem_animation.py
-
-Export a GIF that demonstrates all three cases:
-    python master_theorem_animation.py --save-gif master_theorem_animation.gif
-
-The visualizer uses recurrences of the form:
-    T(n) = a T(n / b) + Theta(n**d)
-with n = b**h so that the recursion-tree depth is an integer.
-"""
 
 from __future__ import annotations
 
@@ -18,8 +5,6 @@ import argparse
 import math
 from pathlib import Path
 
-# Select a non-interactive backend when generating a GIF (so it also works on
-# machines without a desktop session).
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Master's Theorem animation")
     parser.add_argument(
