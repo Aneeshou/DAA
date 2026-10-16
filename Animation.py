@@ -1,12 +1,6 @@
-"""Balanced, beginner-friendly Master's Theorem animation.
-
-Run interactively:
-    python master_theorem_animation_balanced.py
-
-Export a GIF:
+"""
+Export GIF:
     python master_theorem_animation_balanced.py --save-gif master_theorem_animation_balanced.gif
-
-The program uses three fixed, classroom-friendly examples and only four controls.
 """
 
 from __future__ import annotations
@@ -94,8 +88,7 @@ def draw_dashboard(fig, axes, example, visible_levels):
     shown = max(1, min(visible_levels, h + 1))
     colour = example["colour"]
 
-    # Left: a schematic recursion tree. Node counts are exact; only a small
-    # sample of circles is drawn so the diagram remains readable.
+    # recursion tree.
     ax_tree.set_title("1. Recursion tree", loc="left", color=NAVY,
                       fontsize=12, fontweight="bold", pad=8)
     ax_tree.set_xlim(-1.28, 1.32)
@@ -148,8 +141,7 @@ def draw_dashboard(fig, axes, example, visible_levels):
         ax_tree.text(0, -0.38, f"Input size n = {n}",
                      ha="center", va="center", fontsize=8.5, color=GREY)
 
-    # Right: total work done by each level. Upcoming levels are faded;
-    # each newly revealed level is highlighted.
+    # work done by each level
     ax_bars.set_title("2. Work at each level", loc="left", color=NAVY,
                       fontsize=12, fontweight="bold", pad=8)
     x = np.arange(h + 1)
@@ -182,11 +174,11 @@ def draw_dashboard(fig, axes, example, visible_levels):
     ax_bars.text(0.5, 0.96, trend, transform=ax_bars.transAxes, ha="center",
                  va="top", fontsize=9, color=colour, fontweight="bold")
 
-    # Bottom: only the key comparison and answer, without extra parameters.
+    #comparison
     ax_info.axis("off")
     ax_info.set_title("3. Apply the Master Theorem", loc="left", color=NAVY,
                       fontsize=12, fontweight="bold", pad=5)
-    # Subtle panel with an easy left-to-right reading order.
+    #panel
     box = FancyBboxPatch((0.005, 0.05), 0.99, 0.80,
                          boxstyle="round,pad=0.012,rounding_size=0.018",
                          transform=ax_info.transAxes, facecolor="#F7F9FC",
@@ -237,7 +229,7 @@ class Explorer:
         self.fig = plt.figure(figsize=(13, 8.2), facecolor=WHITE)
         self.axes = make_axes(self.fig)
 
-        # Four simple controls: move between levels, play/pause, switch example.
+        #levels, play/pause, switch example.
         button_specs = [
             (0.10, 0.065, 0.16, 0.065, "◀ Previous level", self.previous),
             (0.30, 0.065, 0.15, 0.065, "▶ Play / Pause", self.toggle_play),
